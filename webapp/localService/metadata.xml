@@ -1,0 +1,76 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="sap.com.cds_z_sample_demo_products" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Z_Sample_Demo_ProductsType" sap:label="Sample Demo Products" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="productuuid"/>
+                </Key>
+                <Property Name="productuuid" Type="Edm.Guid" Nullable="false" sap:label="Node Key"/>
+                <Property Name="SupplierName" Type="Edm.String" MaxLength="80" sap:label="Company"/>
+                <Property Name="TaxTarifCode" Type="Edm.Byte" sap:label="Tax Tariff Code" sap:value-list="standard"/>
+                <Property Name="MeasureUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Measure" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="WeightMeasure" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="WeightUnit" sap:label="Weight"/>
+                <Property Name="WeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Measure" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="CurrencyCode" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:value-list="standard" sap:semantics="currency-code"/>
+                <Property Name="Price" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CurrencyCode" sap:label="Price"/>
+                <Property Name="Width" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="DimUnit" sap:label="Width"/>
+                <Property Name="Depth" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="DimUnit" sap:label="Depth"/>
+                <Property Name="Height" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="DimUnit" sap:label="Height"/>
+                <Property Name="ProductID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Product ID"/>
+                <Property Name="DimUnit" Type="Edm.String" MaxLength="3" sap:label="Dimension Unit" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="CreatedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created At"/>
+                <Property Name="ChangedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed At"/>
+                <Property Name="PictureUrl" Type="Edm.String" MaxLength="29" sap:display-format="UpperCase"/>
+                <Property Name="supplieruuid" Type="Edm.Guid" sap:label="Node Key" sap:value-list="standard"/>
+                <Property Name="TypeCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Type Code" sap:value-list="standard"/>
+                <Property Name="Category" Type="Edm.String" MaxLength="40" sap:label="Category" sap:value-list="standard"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="255" sap:label="Name"/>
+                <Property Name="NameLanguage" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="255" sap:label="Description"/>
+                <Property Name="DescriptionLanguage" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"/>
+                <Property Name="SupplierID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Business Partner ID"/>
+                <NavigationProperty Name="to_SOItems" Relationship="sap.com.cds_z_sample_demo_products.assoc_0ED688CCABE375E68C596E5590ACB5DE" FromRole="FromRole_assoc_0ED688CCABE375E68C596E5590ACB5DE" ToRole="ToRole_assoc_0ED688CCABE375E68C596E5590ACB5DE" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Z_Sample_Demo_SoliType" sap:label="Sample Demo Sales Orders Line Items" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="salesorderitemuuid"/>
+                </Key>
+                <Property Name="salesorderitemuuid" Type="Edm.Guid" Nullable="false" sap:label="Node Key"/>
+                <Property Name="SalesOrderID" Type="Edm.Guid" sap:label="Sales Order UUID" sap:value-list="standard"/>
+                <Property Name="ItemPosition" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Item Position"/>
+                <Property Name="ProductID" Type="Edm.Guid" sap:label="Node Key" sap:value-list="standard"/>
+                <Property Name="NoteID" Type="Edm.Guid" sap:label="Node Key"/>
+                <Property Name="CurrencyCode" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:value-list="standard" sap:semantics="currency-code"/>
+                <Property Name="GrossAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CurrencyCode" sap:label="Gross Amount"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CurrencyCode" sap:label="Net Amount"/>
+                <Property Name="TaxAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CurrencyCode" sap:label="Tax Amount"/>
+                <Property Name="StatusAvailability" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ATP Status" sap:value-list="standard"/>
+                <Property Name="OpportunityItem" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Item Position"/>
+            </EntityType>
+            <Association Name="assoc_0ED688CCABE375E68C596E5590ACB5DE" sap:content-version="1">
+                <End Type="sap.com.cds_z_sample_demo_products.Z_Sample_Demo_ProductsType" Multiplicity="1" Role="FromRole_assoc_0ED688CCABE375E68C596E5590ACB5DE"/>
+                <End Type="sap.com.cds_z_sample_demo_products.Z_Sample_Demo_SoliType" Multiplicity="*" Role="ToRole_assoc_0ED688CCABE375E68C596E5590ACB5DE"/>
+            </Association>
+            <EntityContainer Name="sap.com.cds_z_sample_demo_products_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Z_Sample_Demo_Products" EntityType="sap.com.cds_z_sample_demo_products.Z_Sample_Demo_ProductsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Z_Sample_Demo_Soli" EntityType="sap.com.cds_z_sample_demo_products.Z_Sample_Demo_SoliType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_0ED688CCABE375E68C596E5590ACB5DE" Association="sap.com.cds_z_sample_demo_products.assoc_0ED688CCABE375E68C596E5590ACB5DE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Z_Sample_Demo_Products" Role="FromRole_assoc_0ED688CCABE375E68C596E5590ACB5DE"/>
+                    <End EntitySet="Z_Sample_Demo_Soli" Role="ToRole_assoc_0ED688CCABE375E68C596E5590ACB5DE"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/Z_SAMPLE_DEMO_PRODUCTS_CDS/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/Z_SAMPLE_DEMO_PRODUCTS_CDS/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
